@@ -1,0 +1,101 @@
+--purple: rgb(128,0,128);
+}
+
+/* General body font styling */
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Styling the header contents view results and Timer  */
+header {
+  display: flex;
+  position: relative;
+  height: 30px;
+}
+
+header .view-results{
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+}
+
+header .card {
+  position: absolute;
+  right: 0;
+}
+
+/* Styling main contents */
+main {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.question-container,
+.high-scores-container,
+.results-container
+ {
+  width: 500px;
+  margin: auto;
+}
+
+/* Styling form */
+input {
+  margin: 2%;
+}
+
+/* Styling the all buttons */
+.option,
+button,
+#submit {
+  background-color: var(--purple);
+  color: white;
+  border-radius: 8%;
+  border-color: var(--purple);
+  margin: 2%
+}
+
+/* changing opacity of button color on hover */
+.option:hover,
+#submit,
+button:hover {
+  opacity: 0.75;
+}
+
+/* giving an effect of clicking by adding shadow */
+.option:active,
+#submit:hover,
+button:hover {
+  box-shadow: 0px 2px 6px black;
+}
+
+/* Styling leader board  */
+#leader-board {
+  font-size: smaller;
+  color: black;
+  background-color: lavender;
+}
+
+.sButtonContainer {
+  width: 100%;
+}
+
+.sButtonContainer button {
+  width: 50%;
+}
+
+/* using media query to display mobile responsive on tabs and mobile phones */
+@media screen and (max-width: 768px), (max-width: 480px) {
+  body,
+  main,
+  .high-scores-container,
+  .results-container,
+  .question-container
+  {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0%;
+    width:auto;
+  }
+}
