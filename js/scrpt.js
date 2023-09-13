@@ -60,3 +60,69 @@ const Questions = [{
 }
 
 ]
+
+//HTML Querying Elements
+var timerElement = document.getElementById("timer-count");
+var finalScore = document.getElementById("final-score");
+var leaderBoardScore = document.getElementById("lbscore");
+var userInitials = document.getElementById ("initials");
+
+var resultsEl =document.getElementById("rcontainer");
+var questionsEl = document.getElementById("qcontainer");
+var leaderBoardEl = document.getElementById ("scontainer");
+var preQuizEl = document.getElementById ("pqcontainer");
+var leaderDisplay = document.getElementById("leader-board");
+
+var startButton = document.getElementById("startQuizButton");
+var goBackButton = document.getElementById ("goBackButton");
+var submitButton = document.getElementById("submit");
+var clearButton = document.getElementById ("clear-button");
+var viewResultsEl = document.getElementById("vwresults");
+var showRight = document.getElementById ("accuracy");
+var partition = document. getElementById ("partition");
+var timeTakenEl = document.getElementById ("timeTaken");
+
+//Initialing global variables
+let id = 0;
+let score = 0;
+let timerCount = 0;
+let timer;
+let timeTaken;
+let lastQuestion = false;
+let result;
+
+// Init function that loads the first page
+function init () {
+    timerElement.textContent = 0;
+    preQuizEl.style.display = 'block';
+    questionsEl.style.display = 'none';
+    resultsEl.style.display = 'none';
+    leaderBoardEl.style.display = 'none';
+}
+
+//Function to start the quiz
+function startQuiz() {
+    console.log('started');
+        timerCount = 120;
+        id = 0;
+        score = 0;
+        lastQuestion = false;
+        startTimer();
+        renderQuestions(0);
+}
+
+// Function that starts start timer 
+function startTimer() {
+    timer = setInterval(function() {
+        // console.log ('timer count in start timer' + timerCount);
+        if (timerCount <= 0) {
+           clearInterval(timer);
+           timer = null;
+           displayResults();
+        } else { 
+            timerElement.textContent = timerCount;
+        }
+        timerCount--;
+    
+    },1000);
+    }
