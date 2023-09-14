@@ -126,3 +126,42 @@ function startTimer() {
     
     },1000);
     }
+
+
+//declaring and defining the function to loop through questions
+
+function renderQuestions(increment){
+  
+    // Setting the index to retrieve the next question
+    id = id + increment;
+    console.log('index:' + id);
+    if (id == Questions.length - 1) {
+       lastQuestion = true;
+    }
+
+    preQuizEl.style.display = "none";
+    questionsEl.style.display = 'block';
+    resultsEl.style.display = 'none';
+    leaderBoardEl.style.display = 'none';
+
+    //populating the question in the quiz
+    const question = document.getElementById('question');
+    question.textContent = Questions[id].q;
+
+    //population the options in the quiz
+    const op1 = document.getElementById('op1');
+    op1.textContent = Questions[id].a[0].text;
+
+    const op2 = document.getElementById("op2");
+    op2.innerText = Questions[id].a[1].text;
+
+    const op3 = document.getElementById("op3");
+    op3.innerText = Questions[id].a[2].text;
+
+    const op4 = document.getElementById("op4");
+    op4.innerText = Questions[id].a[3].text;
+
+    partition.innerText = ''
+    showRight.innerText = '';
+
+}
