@@ -165,3 +165,74 @@ function renderQuestions(increment){
     showRight.innerText = '';
 
 }
+
+// Validate if the answer is correct 
+function evaluateAnswer(event){
+    event.stopPropagation();
+    event.preventDefault();
+    let selected = event.target.id;
+    let isSelectedCorrect;
+
+    //console.log ("selected: " + selected);
+    if (selected == "op1") {
+        isSelectedCorrect = Questions[id].a[0].isCorrect;
+       // console.log (' Option 1');
+    } else if (selected == "op2") {
+        isSelectedCorrect = Questions[id].a[1].isCorrect;
+    } else if (selected == "op3") {
+        isSelectedCorrect = Questions[id].a[2].isCorrect;
+    } else {
+        isSelectedCorrect = Questions[id].a[3].isCorrect;
+    };
+
+    if (isSelectedCorrect) {
+        score += 1;
+        result = "Correct";
+    } else {
+        // reduce time by 2 seconds when answer is incorrect
+        result = "Wrong!!!";
+        if (timerCount > 1) {
+            timerCount -= 2;
+        } else {
+            displayResults();
+        }
+    }
+
+    isAnswerCorrect();
+}
+
+
+// Show the questions plus if the selected answer is correct
+function isAnswerCorrect() {
+    const question = document.getElementById('question');
+    question.textContent = Questions[id].q;
+
+    const op1 = document.getElementById('op1');
+    op1.textContent = Questions[id].a[0].text;
+
+    const op2 = document.getElementById("op2");
+    op2.innerText = Questions[id].a[1].text;
+
+    const op3 = document.getElementById("op3");
+    op3.innerText = Questions[id].a[2].text;
+
+    const op4 = document.getElementById("op4");
+    op4.innerText = Questions[id].a[3].text;
+
+    partition.innerText = '----------------------------------------';
+    showRight.innerText = result;
+    showRight.style.fontStyle = "italic";
+
+
+    setTimeout(nextQuestion,500);
+}
+
+//function to call next question
+function nextQuestion() {
+
+    if (id <= Questions.length - 1 && !lastQuestion)  {
+     renderQuestions(1);
+    } else {
+            displayResults();
+    }
+}
