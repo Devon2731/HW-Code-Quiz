@@ -236,3 +236,84 @@ function nextQuestion() {
             displayResults();
     }
 }
+
+
+// Display results at the end of the quiz or when timer is done
+function displayResults() {
+    timerElement.textContent = timerCount;
+    finalScore.textContent = timerCount;
+    timeTaken = timerCount;
+    clearInterval(timer);
+    leaderBoardEl.style.display = 'none';
+    questionsEl.style.display = 'none';
+    preQuizEl.style.display = "none";
+    resultsEl.style.display = 'block';
+    
+}
+
+
+//display user and score pulling from local Storage
+function viewResults(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    leaderBoardScore.textContent = localStorage.getItem("userScore");
+    userInitials.textContent = localStorage.getItem("userInitials"); 
+    timeTakenEl.textContent = localStorage.getItem("timeTaken");
+
+    questionsEl.style.display = 'none';
+    preQuizEl.style.display = "none";
+    resultsEl.style.display = 'none';
+    leaderBoardEl.style.display = 'block';
+    leaderDisplay.style.display ='block';
+}
+
+//Clearing leader board score
+function clearResults(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    questionsEl.style.display = 'none';
+    preQuizEl.style.display = "none";
+    resultsEl.style.display = 'none';
+    leaderBoardEl.style.display = 'block';
+    leaderDisplay.style.display = 'none';
+}
+
+
+//Initial pageload 
+init ();
+
+// Start button
+goBackButton.addEventListener ("click", init, false);
+startButton.addEventListener ("click", startQuiz, false);
+
+// Capturing user actions!
+op1.addEventListener("click",evaluateAnswer,false);
+op2.addEventListener("click",evaluateAnswer,false);
+op3.addEventListener("click",evaluateAnswer,false);
+op4.addEventListener("click",evaluateAnswer,false);
+
+
+// Capturing initials and final score in localStorage 
+submitButton.addEventListener("click", function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    const userIpInitials = document.getElementById("intials-entered").value;
+    if (userIpInitials) {
+        userInputInitials = document.getElementById("intials-entered").value;}
+    else {
+        userInputInitials = 'Player unidentified';
+    }
+    localStorage.setItem("userInitials", userInputInitials);
+    localStorage.setItem("userScore", score);
+    localStorage.setItem("timeTaken", timeTaken);
+  
+}, false);
+
+// Display view results when SubmitButton is clicked
+submitButton.addEventListener("click", viewResults, false); 
+
+// Display leader when clicking view results in the header
+viewResultsEl.addEventListener("click", viewResults, false); 
+
+//Clear button empties the component from the page
+clearButton.addEventListener("click", clearResults, false)
