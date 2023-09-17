@@ -3,9 +3,9 @@ In this project, I made a simple timed JavaScript quiz built using JavaScript an
 
 ###Deploy Application
 
-https://github.com/Devon2731/HW-Code-Quiz
+GitHub: https://github.com/Devon2731/HW-Code-Quiz
 
-https://devon2731.github.io/HW-Code-Quiz/
+Depolyment: https://devon2731.github.io/HW-Code-Quiz/
 
 ##Screenshots 📸
 
